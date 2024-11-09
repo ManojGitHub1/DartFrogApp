@@ -1,0 +1,76 @@
+1. Installation
+    a. dart --version
+    b. dart pub global activate dart_frog_cli
+    c. dart_frog create <project-name>
+    d. dart_frog dev to run local server (generates .dart_frog/server.dart contains code based on code inside route folder)
+    e. dart_frog build to build production project (generates docker file to deploy in cloud)
+
+
+2. Request Flow:
+e.g:-
+    Always call the route folder
+    Using Postman
+    (home) localhost:8080              - calls index.dart (home route)
+    (lists) localhost:8080/lists       - calls lists/index.dart (lists route)
+    (items) localhost:8080/items       - calls items/index.dart (items route)
+    (GET)  localhost:8080/db/fbase     - calls db/fbase/index.dart and get's data
+    (POST) localhost:8080/db/fbase     - calls db/fbse/index.dart and create's data
+
+A request comes to a specific route (e.g., /db/fbase/[id]).
+The corresponding handler (e.g., onRequest) processes the request.
+Middleware may be used to modify the request or handle logging, initialization (like Firestore), or add context data.
+The handler may interact with repositories (e.g., TaskListRepository or TaskItemRepository) to fetch, create, update, or delete data from the in-memory database or Firestore.
+The response is then returned to the client.
+
+
+3. Dependency Injection
+Here only MongoDBConnection can be connected and NOT Firestore, Postgres, MySql
+public class UserService{
+    private DatabaseConnection dbConnection;
+
+    // Constructor Dependency
+    public UserService(){
+        dbConnection = new MongoDBConnection(),
+    }
+
+    public user getUser(int userld){
+        // use dbConnection to fetch user data
+    }
+}
+
+b. Here we used Constructor Dependency Injection, where the UserService can connect to any database using the DatabaseConnection class.
+public class UserService{
+    private DatabaseConnection dbConnection;
+
+    public UserService(DatabaseConnection dbConnection){
+        dbConnection dbConnection;
+    }
+
+    public User gotUsor(int userld){
+        // use dbConnection to fetch user data
+    }
+}
+DatabaseConnoction myDbConnection = new MongoDBConnection();
+UserService userService = new UserService(myDbConnection);
+
+DatabaseConnection myDbConnection = new PostgresqlConnection();
+UserService userService = new UserService(myDbConnection);
+
+DatabaseConnection myDbConnection = new MysqlConnection();
+UserService userService = new UserSorvico(myDbConnoction);
+
+
+4. CLI
+    a. dart_frog help
+
+    b. route
+    dart_frog new route "/lists/index"
+    dart_frog new route "/items/index"
+
+    c. "[id]" - dynamic routing
+    dart_frog new route "/db/fbase/[id]"
+
+    d. Default middleware in route folder
+    dart_frog new middleware "/"   - generates middleware function in _middleware.dart
+    dart_frog new middleware "/db/fbase/"  
+
