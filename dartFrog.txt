@@ -8,7 +8,7 @@
 
 2. Request Flow:
 e.g:-
-    Always call the route folder
+    ** Always call the route folder and starts with _middleware and then root(index.dart)
     Using Postman
     (home) localhost:8080              - calls index.dart (home route)
     (lists) localhost:8080/lists       - calls lists/index.dart (lists route)
@@ -18,7 +18,8 @@ e.g:-
 
 A request comes to a specific route (e.g., /db/fbase/[id]).
 The corresponding handler (e.g., onRequest) processes the request.
-Middleware may be used to modify the request or handle logging, initialization (like Firestore), or add context data.
+Middleware used to modify the request or handle logging, initialization (like Firestore), or add context data.
+(GET)  localhost:8080/db/fbase - here goes to middleware initialize firebase and then to index.dart and get's data.
 The handler may interact with repositories (e.g., TaskListRepository or TaskItemRepository) to fetch, create, update, or delete data from the in-memory database or Firestore.
 The response is then returned to the client.
 
