@@ -8,6 +8,9 @@ Handler middleware(Handler handler) {
 
   // requestLogger() - Is a defined middleware which prints
   // the time of request, request method, response status code and request folder(/items) from (localhost:8080/items)
+
+  // authentication() - Is a defined middleware which checks if the user is authenticated or not
+
   // provider - dependency middleware a type of middleware
   // accepts request context (here String) and returns a response context to a root handler
   // In root handler context.read<String>();
