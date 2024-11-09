@@ -1,4 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
+import 'package:tasklist_backend/items/item_repository.dart';
+import 'package:tasklist_backend/lists/list_repository.dart';
 
 // calls function middleware
 // handler - handles request and returns handler
@@ -18,5 +20,6 @@ Handler middleware(Handler handler) {
   // this is depentency injection
   return handler
       .use(requestLogger())
-      .use(provider<String>((context) => 'Dart Frog'));
+      .use(provider<TaskListRepository>((context) => TaskListRepository()))
+      .use(provider<TaskItemRepository>((context) => TaskItemRepository()));
 }
