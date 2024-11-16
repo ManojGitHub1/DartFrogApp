@@ -10,6 +10,7 @@
 e.g:-
     ** Always call the route folder and starts with _middleware and then root(index.dart)
     Using Postman
+            local:8080/<route_foldername>/<subfoldername>
     (home) localhost:8080              - calls index.dart (home route)
     (lists) localhost:8080/lists       - calls lists/index.dart (lists route)
     (items) localhost:8080/items       - calls items/index.dart (items route)

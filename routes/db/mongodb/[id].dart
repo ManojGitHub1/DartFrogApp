@@ -24,7 +24,7 @@ Future<Response> _updateList(RequestContext context, String id) async {
         .collection('lists')
         .updateOne(where.eq('id', id), modify.set('name', name));
 
-    return Response(statusCode: HttpStatus.noContent);
+    return Response(statusCode: HttpStatus.accepted);
   } catch (e) {
     return Response(statusCode: HttpStatus.badRequest);
   }
@@ -33,7 +33,7 @@ Future<Response> _updateList(RequestContext context, String id) async {
 Future<Response> _deleteList(RequestContext context, String id) async {
   await context.read<Db>().collection('lists').deleteOne({'id': id}).then(
     (value) {
-      return Response(statusCode: HttpStatus.noContent);
+      return Response(statusCode: HttpStatus.accepted);
     },
     onError: (e) {
       return Response(statusCode: HttpStatus.badGateway);

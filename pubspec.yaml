@@ -16,6 +16,7 @@ dependencies:
   json_serializable: ^6.8.0
   meta: ^1.16.0
   mongo_dart: ^0.10.3
+  postgres: ^3.4.3
 
 dev_dependencies:
   mocktail: ^1.0.3
