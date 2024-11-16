@@ -24,13 +24,13 @@ Future<Response> _updateList(RequestContext context, String id) async {
       .document(id)
       .update({'name': name});
 
-  return Response(statusCode: HttpStatus.noContent);
+  return Response(statusCode: HttpStatus.accepted);
 }
 
 Future<Response> _deleteList(RequestContext context, String id) async {
   await Firestore.instance.collection('tasklists').document(id).delete().then(
     (value) {
-      return Response(statusCode: HttpStatus.noContent);
+      return Response(statusCode: HttpStatus.accepted);
     },
     onError: (e) {
       return Response(statusCode: HttpStatus.badRequest);
