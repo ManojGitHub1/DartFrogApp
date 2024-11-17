@@ -17,6 +17,7 @@ dependencies:
   meta: ^1.16.0
   mongo_dart: ^0.10.3
   postgres: ^3.4.3
+  redis: ^4.0.0
 
 dev_dependencies:
   mocktail: ^1.0.3
