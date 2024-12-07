@@ -76,3 +76,14 @@ UserService userService = new UserSorvico(myDbConnoction);
     dart_frog new middleware "/"   - generates middleware function in _middleware.dart
     dart_frog new middleware "/db/fbase/"  
 
+
+5. Session Management
+    a. Session Creation
+        - The session token is a unique identifier for the user session and server sends it to browser. 
+    b. Session Storage
+        - When user logs in, server create a session token and store it in the database (e.g., MongoDBSession) or in a cookie (e.g., HttpCookieSession) or RedisCache.
+    c. Session Retrieval
+        - User sends a request to the server with the session token. 
+    d. Session Expiration
+        - Session is set to n hour by default. If session is not renewed within 1 hour, session is invalidated.
+

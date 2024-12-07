@@ -1,6 +1,6 @@
 import 'package:dart_frog/dart_frog.dart';
-import 'package:tasklist_backend/items/item_repository.dart';
-import 'package:tasklist_backend/lists/list_repository.dart';
+import 'package:tasklist_backend/repository/items/item_repository.dart';
+import 'package:tasklist_backend/repository/lists/list_repository.dart';
 
 // handler - handles request and returns handler
 Handler middleware(Handler handler) {
