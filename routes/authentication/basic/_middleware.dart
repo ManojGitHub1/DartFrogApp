@@ -2,9 +2,9 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:dart_frog_auth/dart_frog_auth.dart';
 import 'package:tasklist_backend/repository/user/user_repository.dart';
 
-Handler middleware(Handler handler) {
-  final userRepository = UserRepository();
+final userRepository = UserRepository();
 
+Handler middleware(Handler handler) {
   return handler
       .use(
         basicAuthentication<User>(

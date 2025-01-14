@@ -2,14 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:tasklist_backend/hash_extension.dart';
 
-/// In Memory Database
+/// In-Memory Database for Sessions
 @visibleForTesting
-Map<String, Session> sessionDb = {};
+final Map<String, Session> sessionDb = {};
 
 /// Session Class
 class Session extends Equatable {
-  /// - Documentation
-  /// constructor
+  /// Constructor
   const Session({
     required this.token,
     required this.userId,
@@ -17,7 +16,6 @@ class Session extends Equatable {
     required this.expiryDate,
   });
 
-  // String? id;
   /// Session token
   final String token;
 
@@ -45,30 +43,59 @@ class Session extends Equatable {
 class SessionRepository {
   /// Create a new session
   Session createSession(String userId) {
-    final session = Session(
-      token: generateToken(userId),
+    final String token = generateToken(userId);
+    final Session session = Session(
+      token: token,
       userId: userId,
-      expiryDate: DateTime.now().add(const Duration(hours: 24)),
       createdAt: DateTime.now(),
+      expiryDate: DateTime.now().add(const Duration(hours: 1)),
     );
 
-    sessionDb[session.token] = session;
+    sessionDb[token] = session;
     return session;
   }
 
-  /// Get a session by token
+  /// Generate a unique token for the session
   String generateToken(String userId) {
     return '${userId}_${DateTime.now().toIso8601String()}'.hashValue;
   }
 
-  /// Search a session of perticular token
-  Session? sessionFromToken(String token) {
-    final session = sessionDb[token];
-
-    if (session != null && session.expiryDate.isAfter(DateTime.now())) {
-      return session;
-    } else {
-      return null;
+  /// Retrieve a session using the Authorization Bearer token
+  Session? getSessionFromHeader(String authorizationHeader) {
+    final String? token = extractBearerToken(authorizationHeader);
+    if (token == null) {
+      return null; // Invalid or missing token
     }
+    return _getSession(token);
+  }
+
+  /// Helper function to extract Bearer token from Authorization header
+  String? extractBearerToken(String authorizationHeader) {
+    if (!authorizationHeader.startsWith('Bearer ')) {
+      return null; // Invalid Authorization header format
+    }
+    return authorizationHeader.substring(7); // Extract token after 'Bearer '
+  }
+
+  /// Get a session by token
+  Session? _getSession(String token) {
+    final Session? session = sessionDb[token];
+
+    if (session == null) {
+      return null; // No session found for token
+    }
+
+    if (session.expiryDate.isBefore(DateTime.now())) {
+      sessionDb.remove(token); // Remove expired session
+      return null; // Session expired
+    }
+
+    return session; // Valid session
+  }
+
+  /// Validate if a session is valid based on the token
+  bool isValidSession(String token) {
+    final Session? session = _getSession(token);
+    return session != null;
   }
 }

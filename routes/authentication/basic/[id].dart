@@ -50,7 +50,7 @@ Future<Response> _updateUser(RequestContext context, String id) async {
       username: username,
       password: password,
     );
-    return Response(statusCode: HttpStatus.noContent);
+    return Response(statusCode: HttpStatus.ok);
   } else {
     return Response(statusCode: HttpStatus.badRequest);
   }
@@ -66,6 +66,6 @@ Future<Response> _deleteUser(RequestContext context, String id) async {
     }
     await context.read<UserRepository>().deleteUser(id);
 
-    return Response(statusCode: HttpStatus.noContent);
+    return Response(statusCode: HttpStatus.ok);
   }
 }
