@@ -31,7 +31,8 @@ Handler middleware(Handler handler) {
       }
     } catch (e) {
       response = Response.json(
-          body: {'success': false, 'message': 'Failed to connect to Redis'});
+        body: {'success': false, 'message': 'Failed to connect to Redis'},
+      );
     }
 
     return response;
