@@ -11,8 +11,10 @@ dependencies:
   crypto: ^3.0.6
   dart_frog: ^1.1.0
   dart_frog_auth: ^1.1.0
+  dart_frog_web_socket: ^1.0.0
   equatable: ^2.0.5
   firedart: ^0.9.8
+  http: ^1.2.2
   intl: ^0.20.1
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0

@@ -87,3 +87,132 @@ UserService userService = new UserSorvico(myDbConnoction);
     d. Session Expiration
         - Session is set to n hour by default. If session is not renewed within 1 hour, session is invalidated.
 
+6. Authentication and Authorization
+    a. Basic
+        - The user sends a username and password in the request header.
+        - The server checks the username and password against the database.
+    b. Bearer
+        - The user sends a bearer token in the request header.
+        - The server checks the bearer token against the database.
+        - and after validation the session starts.
+    c. JWT (JSON Web Token)
+        - The user sends a JWT token in the request header.
+        - The server checks the JWT token against the database.
+    d. OAuth
+        - The user sends an OAuth token in the request header.
+    e. API Keys
+        - The user sends an API key in the request header.
+    f. API Secret
+        - The user sends an API secret in the request header.
+    g. OAuth 2.0
+        - The user sends an OAuth 2.0 token in the request header.
+    h. AWS Signature
+        - The user sends an AWS Signature in the request header.
+    i. Google Sign-In
+        - The user sends a Google Sign-In token in the request header.
+
+6.1 Websockets Communication
+    wht - A WSkt is a comm protocol enables a 2-way real time comm btw a client and server.
+        - designed for application like low-latency, high-interactivity, gaming
+        - full duplex comm(send data at same time)
+        - bidirectional comm
+    how - client initiates a conn by sending a Websockets handshake req to server 
+        - similar to http req but contains header which tell websocket protocol.
+        - client or server can close conn by sending closing message.
+
+7. CORS (Cross-Origin Resource Sharing)
+    a. CORS Headers
+        - The server sends CORS headers in the response to allow the client to access the resource.
+    b. CORS Middleware
+        - The server uses CORS middleware to handle CORS requests.
+    c. CORS Policies
+        - The server uses CORS policies to control which origins are allowed to access the resource.
+    d. CORS Pre-flight Requests
+        - The server uses CORS pre-flight requests to check if the client can access the resource.
+     CORS Preflight Response
+        - The server sends a CORS pre-flight response to the client to allow the client to access the resource.
+
+8. Error Handling
+    a. Custom Error Handling
+        - The server can throw custom exceptions with specific error messages.
+    b. Global Error Handling
+        - The server can catch all unhandled exceptions and send a generic error message.
+    c. Exception Handling
+        - The server can handle exceptions by logging them and sending a generic error message.
+    d. Error Logging
+        - The server can log all errors to a file or database.
+
+9. Logging
+    a. Console Logging
+        - The server can log all messages to the console.
+    b. File Logging
+        - The server can log all messages to a file.
+    c. Database Logging
+        - The server can log all messages to a database.
+    a. Logrotate
+        - The server can use logrotate to rotate log files.
+    b. Logstash
+        - The server can use Logstash to process log files.
+    c. Fluentd
+        - The server can use Fluentd to process log files.
+    d. Splunk
+        - The server can use Splunk to process log files.
+
+10. Security
+    a. Encryption
+        - The server can encrypt sensitive data before storing it in the database.
+    b. Hashing
+        - The server can hash sensitive data before storing it in the database.
+    c. Authentication
+        - The server can authenticate users using various methods (e.g., username and password, OAuth, JWT).
+    d. Authorization
+        - The server can authorize users based on their roles and permissions.
+    a. SSL/TLS
+        - The server can use SSL/TLS to encrypt data in transit.
+    b. HTTPS
+        - The server can use HTTPS to encrypt data in transit.
+    c. Firewall 
+        - The server can use firewall to protect the server from unauthorized access.
+    d. Intrusion Detection System (IDS)
+        - The server can use IDS to detect and prevent attacks on the server.
+
+11. Testing
+    a. Unit Testing
+        - The server can write unit tests for individual functions and methods.
+    b. Integration Testing
+        - The server can write integration tests for the entire application.
+    c. End-to-End Testing
+        - The server can write end-to-end tests for the entire application.
+
+12. Deployment
+    a. Docker
+        - The server can be deployed using Docker.
+    b. Kubernetes
+        - The server can be deployed using Kubernetes.
+    c. AWS
+        - The server can be deployed using AWS.
+    d. Google Cloud
+        - The server can be deployed using Google Cloud.
+
+13. Monitoring  
+    a. Prometheus
+        - The server can be monitored using Prometheus.
+    b. Grafana
+        - The server can be monitored using Grafana.    
+    c. ELK Stack
+        - The server can be monitored using ELK Stack.
+    d. New Relic
+        - The server can be monitored using New Relic.
+
+14. Continuous Integration/Continuous Deployment (CI/CD)
+    a. Jenkins
+        - The server can be integrated with Jenkins.
+    b. Travis CI
+        - The server can be integrated with Travis CI.
+    c. CircleCI
+        - The server can be integrated with CircleCI.
+    d. GitLab CI/CD
+        - The server can be integrated with GitLab CI/CD.
+ 
+    
+
